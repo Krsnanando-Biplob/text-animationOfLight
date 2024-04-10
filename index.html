@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgba(23, 22, 22, 0.871);
+
+    }
+    .text{
+      font-size: 4em;
+      display: inline-flex;
+      cursor: default;
+    }
+    .text span{
+      position: relative;
+      color: rgba(255, 255, 255, 0.1);
+      transition: 0.5s;
+    }
+    .text:hover span{
+      color: #fff;
+      transition: 0.5s;
+      filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #fff);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text">I-hate-you-Krsnanando...</h1>
+  <script>
+    let text = document.querySelector('.text')
+    let spns= Array.from(text.textContent.trim()).map(char => `<span>${char}</span>` ).join('');
+    text.innerHTML =spns;
+
+    let spanlist= document.querySelectorAll("span");
+    spanlist.forEach((span, index)=>{
+      span.addEventListener('mouseover', () =>{
+        spanlist.forEach((s,i)=>{
+          let distance = Math.abs(index - i);
+          let deley = (distance * 0.1).toFixed(1);
+          s.style.transitionDelay= `${deley}s`
+        })
+      })
+    })
+  </script>
+</body>
+</html>
